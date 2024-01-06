@@ -64,6 +64,7 @@ type User struct {
 func (u *User) SetPassword(password string) error {
 	if password == "" {
 		return ErrPasswordRequired
+
 	}
 
 	if len(password) < 8 {
