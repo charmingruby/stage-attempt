@@ -27,7 +27,7 @@ type Report struct {
 	UserID      int        `json:"user_id" db:"user_id"`
 	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
 	UpdatedAt   time.Time  `json:"updated_at" db:"updated_at"`
-	DeletedAt   *time.Time `json:"deleted_at" db:"deleted_at"`
+	DeletedAt   *time.Time `json:"deleted_at,omitempty" db:"deleted_at"`
 }
 
 func (r *Report) Validate() error {
