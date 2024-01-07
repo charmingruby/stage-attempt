@@ -16,12 +16,13 @@ var (
 
 func NewUser(
 	id int,
-	name string,
-	lastName string,
-	email string,
-	role string,
-	password string,
 	birthdate time.Time,
+	name,
+	lastName,
+	email,
+	role,
+	avatarUrl,
+	password string,
 ) *User {
 	now := time.Now()
 
@@ -37,6 +38,7 @@ func NewUser(
 		LastName:  lastName,
 		Email:     email,
 		Birthdate: birthdate,
+		AvatarUrl: avatarUrl,
 		Role:      roleToAssign,
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -55,6 +57,7 @@ type User struct {
 	Email     string     `json:"email" db:"email"`
 	Password  string     `json:"password" db:"password"`
 	Role      string     `json:"role" db:"role"`
+	AvatarUrl string     `json:"avatar_url" db:"avatar_url"`
 	Birthdate time.Time  `json:"birthdate" db:"birthdate"`
 	CreatedAt time.Time  `json:"created_at" db:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at" db:"updated_at"`
