@@ -19,6 +19,13 @@ const (
 	threat_canceled   = "canceled"
 	threat_processing = "processing"
 	threat_solved     = "solved"
+
+	order_pending          = "pending"
+	order_awaiting_payment = "awaiting_payment"
+	order_developing       = "developing"
+	order_delivered        = "delivered"
+	order_maintaince       = "maintaince"
+	order_threatened       = "threatened"
 )
 
 func PaymentStatus() map[string]string {
@@ -47,6 +54,17 @@ func ThreatStatus() map[string]string {
 		threat_canceled:   "canceled",
 		threat_processing: "processing",
 		threat_solved:     "solved",
+	}
+}
+
+func OrderStatus() map[string]string {
+	return map[string]string{
+		order_pending:          "pending",
+		order_awaiting_payment: "awaiting_payment",
+		order_developing:       "developing",
+		order_delivered:        "delivered",
+		order_maintaince:       "maintaince",
+		order_threatened:       "threatened",
 	}
 }
 
