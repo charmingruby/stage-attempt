@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var roles = []string{"admin", "customer"}
+var roles = []string{"developer", "customer"}
 var (
 	ErrPasswordRequired  = errors.New("password is required and can't be blank")
 	ErrPasswordMinLength = errors.New("password must be at least 8 characters")
@@ -19,9 +19,9 @@ func NewUser(
 	birthdate time.Time,
 	name,
 	lastName,
+	phone,
 	email,
 	role,
-	avatarUrl,
 	password string,
 ) *User {
 	now := time.Now()
@@ -38,7 +38,7 @@ func NewUser(
 		LastName:  lastName,
 		Email:     email,
 		Birthdate: birthdate,
-		AvatarUrl: avatarUrl,
+		Phone:     phone,
 		Role:      roleToAssign,
 		CreatedAt: now,
 		UpdatedAt: now,
@@ -55,9 +55,9 @@ type User struct {
 	Name      string     `json:"name" db:"name"`
 	LastName  string     `json:"last_name" db:"last_name"`
 	Email     string     `json:"email" db:"email"`
+	Phone     string     `json:"phone" db:"phone"`
 	Password  string     `json:"password" db:"password"`
 	Role      string     `json:"role" db:"role"`
-	AvatarUrl string     `json:"avatar_url" db:"avatar_url"`
 	Birthdate time.Time  `json:"birthdate" db:"birthdate"`
 	CreatedAt time.Time  `json:"created_at" db:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at" db:"updated_at"`

@@ -14,9 +14,9 @@ func TestUserJSONSerialization(t *testing.T) {
 		time.Date(2003, time.May, 31, 0, 0, 0, 0, time.UTC),
 		"John",
 		"Doe",
+		"32 99110-0990",
 		"john@example.com",
 		"",
-		"image.png",
 		"12345678",
 	)
 
@@ -34,7 +34,7 @@ func TestUserJSONSerialization(t *testing.T) {
 	assert.Equal(t, user.LastName, newUser.LastName)
 	assert.Equal(t, user.Email, newUser.Email)
 	assert.Equal(t, user.Birthdate, newUser.Birthdate)
-	assert.Equal(t, user.AvatarUrl, newUser.AvatarUrl)
+	assert.Equal(t, user.Phone, newUser.Phone)
 	assert.Equal(t, user.Role, newUser.Role)
 	assert.Equal(t, user.Password, newUser.Password)
 }
