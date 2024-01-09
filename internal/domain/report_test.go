@@ -12,6 +12,7 @@ func TestReportJSONDeserialization(t *testing.T) {
 	report := NewReport(
 		1,
 		1,
+		1,
 		"n error fixed",
 		"error ocurred during database query is now fixed.",
 	)

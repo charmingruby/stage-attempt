@@ -4,13 +4,14 @@ import (
 	"time"
 )
 
-func NewReport(id, userId int, title, description string) *Report {
+func NewReport(id, userId, targetId int, title, description string) *Report {
 	now := time.Now()
 
 	r := &Report{
 		ID:          id,
 		Title:       title,
 		Description: description,
+		TargetID:    targetId,
 		UserID:      userId,
 		CreatedAt:   now,
 		UpdatedAt:   now,
@@ -25,6 +26,7 @@ type Report struct {
 	Title       string     `json:"title" db:"title"`
 	Description string     `json:"description" db:"description"`
 	UserID      int        `json:"user_id" db:"user_id"`
+	TargetID    int        `json:"target_id" db:"target_id"`
 	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
 	UpdatedAt   time.Time  `json:"updated_at" db:"updated_at"`
 	DeletedAt   *time.Time `json:"deleted_at,omitempty" db:"deleted_at"`
