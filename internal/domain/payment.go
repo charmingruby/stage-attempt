@@ -2,14 +2,6 @@ package domain
 
 import "time"
 
-const (
-	payment_pending    = "pending"
-	payment_canceled   = "canceled"
-	payment_processing = "processing"
-	payment_delivering = "delivering"
-	payment_delivered  = "delivered"
-)
-
 func NewPayment(paymentType PaymentType, id, payerID int) *Payment {
 	now := time.Now()
 
@@ -52,18 +44,8 @@ type CashOpt struct {
 	AmountInCents int64 `json:"amount_in_cents" db:"amount_in_cents"`
 }
 
-func paymentStatus() map[string]string {
-	return map[string]string{
-		payment_pending:    "pending",
-		payment_canceled:   "canceled",
-		payment_processing: "processing",
-		payment_delivering: "delivering",
-		payment_delivered:  "delivered",
-	}
-}
-
 func (p *Payment) StatusPending() *Payment {
-	status := paymentStatus()
+	status := PaymentStatus()
 
 	p.Status = status[payment_pending]
 
