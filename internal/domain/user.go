@@ -4,6 +4,7 @@ import (
 	"errors"
 	"time"
 
+	"github.com/charmingruby/stage-attempt/helpers"
 	"github.com/charmingruby/stage-attempt/pkg"
 )
 
@@ -26,14 +27,6 @@ func NewUser(
 ) *User {
 	now := time.Now()
 
-	var roleToAssign string
-
-	roleToAssign = role
-
-	if role == "" {
-		roleToAssign = roles[1]
-	}
-
 	u := &User{
 		ID:        id,
 		Name:      name,
@@ -41,7 +34,7 @@ func NewUser(
 		Email:     email,
 		Birthdate: birthdate,
 		Phone:     phone,
-		Role:      roleToAssign,
+		Role:      helpers.If[string](role == "", roles[1], role),
 		CreatedAt: now,
 		UpdatedAt: now,
 		DeletedAt: nil,

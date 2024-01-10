@@ -1,6 +1,6 @@
 package helpers
 
-func If[R any, L any](condition bool, right R, left L) any {
+func If[T any](condition bool, right T, left T) T {
 	if condition {
 		return right
 	}
