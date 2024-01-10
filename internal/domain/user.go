@@ -1,10 +1,10 @@
 package domain
 
 import (
-	"crypto/md5"
 	"errors"
-	"fmt"
 	"time"
+
+	"github.com/charmingruby/stage-attempt/pkg"
 )
 
 var roles = []string{"developer", "customer"}
@@ -28,6 +28,8 @@ func NewUser(
 
 	var roleToAssign string
 
+	roleToAssign = role
+
 	if role == "" {
 		roleToAssign = roles[1]
 	}
@@ -45,7 +47,9 @@ func NewUser(
 		DeletedAt: nil,
 	}
 
-	u.SetPassword(u.Password)
+	u.SetPassword(password)
+
+	println(u.Password)
 
 	return u
 }
@@ -78,7 +82,13 @@ func (u *User) SetPassword(password string) error {
 		return ErrPasswordMaxLength
 	}
 
-	u.Password = fmt.Sprintf("%x", md5.Sum([]byte(password)))
+	hashedPassword, err := pkg.GenerateHash(password)
+	if err != nil {
+		println("error")
+		return err
+	}
+
+	u.Password = hashedPassword
 
 	return nil
 }
