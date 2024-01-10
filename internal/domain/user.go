@@ -28,16 +28,17 @@ func NewUser(
 	now := time.Now()
 
 	u := &User{
-		ID:        id,
-		Name:      name,
-		LastName:  lastName,
-		Email:     email,
-		Birthdate: birthdate,
-		Phone:     phone,
-		Role:      helpers.If[string](role == "", roles[1], role),
-		CreatedAt: now,
-		UpdatedAt: now,
-		DeletedAt: nil,
+		ID:              id,
+		Name:            name,
+		LastName:        lastName,
+		Email:           email,
+		Birthdate:       birthdate,
+		Phone:           phone,
+		Role:            helpers.If[string](role == "", roles[1], role),
+		EmailVerifiedAt: nil,
+		CreatedAt:       now,
+		UpdatedAt:       now,
+		DeletedAt:       nil,
 	}
 
 	u.SetPassword(password)
@@ -48,17 +49,18 @@ func NewUser(
 }
 
 type User struct {
-	ID        int        `json:"id" db:"id"`
-	Name      string     `json:"name" db:"name"`
-	LastName  string     `json:"last_name" db:"last_name"`
-	Email     string     `json:"email" db:"email"`
-	Phone     string     `json:"phone" db:"phone"`
-	Password  string     `json:"password" db:"password"`
-	Role      string     `json:"role" db:"role"`
-	Birthdate time.Time  `json:"birthdate" db:"birthdate"`
-	CreatedAt time.Time  `json:"created_at" db:"created_at"`
-	UpdatedAt time.Time  `json:"updated_at" db:"updated_at"`
-	DeletedAt *time.Time `json:"deleted_at,omitempty" db:"deleted_at"`
+	ID              int        `json:"id" db:"id"`
+	Name            string     `json:"name" db:"name"`
+	LastName        string     `json:"last_name" db:"last_name"`
+	Email           string     `json:"email" db:"email"`
+	Phone           string     `json:"phone" db:"phone"`
+	Password        string     `json:"password" db:"password"`
+	Role            string     `json:"role" db:"role"`
+	Birthdate       time.Time  `json:"birthdate" db:"birthdate"`
+	EmailVerifiedAt *time.Time `json:"email_verified_at" db:"email_verified_at"`
+	CreatedAt       time.Time  `json:"created_at" db:"created_at"`
+	UpdatedAt       time.Time  `json:"updated_at" db:"updated_at"`
+	DeletedAt       *time.Time `json:"deleted_at,omitempty" db:"deleted_at"`
 }
 
 func (u *User) SetPassword(password string) error {
